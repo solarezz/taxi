@@ -1,4 +1,6 @@
 import aiosqlite
 
+
 class Database:
-    pass
+    def __init__(self, db_file='database.db'):
+        self.db_file = db_file

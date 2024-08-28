@@ -1,12 +1,14 @@
 import asyncio
 from create_bot import bot, dp
-from handlers.start import start_router
+from handlers import start, profile, change_avatar
 
 
 # from work_time.time_func import send_time_msg
 
 async def main():
-    dp.include_router(start_router)
+    dp.include_router(router=start.start_router)
+    dp.include_router(router=profile.profile_router)
+    dp.include_router(router=change_avatar.change_photo)
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
