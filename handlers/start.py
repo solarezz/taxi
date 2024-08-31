@@ -29,7 +29,7 @@ async def start(message: Message, state: FSMContext):
             'Здравствуйте! Чтобы начать, пожалуйста, укажите ваше имя и фамилию в формате "Иван Иванов"',
             reply_markup=ReplyKeyboardRemove())
     else:
-        await message.answer('Вы уже зарегистрированы!')
+        await message.answer('Вы уже зарегистрированы!', reply_markup=menu_keyboard(message.chat.id))
 
 
 @start_router.message(Form.fullname)
@@ -37,6 +37,6 @@ async def process_fullname(message: Message, state: FSMContext):
     await customers.add_customer(fullname=message.text,
                                  telegram_user_id=message.chat.id)
     await message.answer('Теперь у вас есть возможность воспользоваться функционалом бота!',
-                         reply_markup=menu_keyboard())
+                         reply_markup=menu_keyboard(message.chat.id))
     await state.clear()
 
