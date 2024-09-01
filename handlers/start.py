@@ -3,6 +3,7 @@ from aiogram.filters import CommandStart, Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from db_handler.db_customers import Customers
+from db_handler.db_drivers import Drivers
 from aiogram.types import (
     KeyboardButton,
     Message,
@@ -14,6 +15,7 @@ from keyboards.all_keyboards import *
 start_router = Router()
 
 customers = Customers()
+drivers = Drivers()
 
 
 class Form(StatesGroup):
@@ -23,6 +25,7 @@ class Form(StatesGroup):
 @start_router.message(CommandStart())
 async def start(message: Message, state: FSMContext):
     cus = await customers.info(message.chat.id)
+    dr = await drivers.info(message.chat.id)
     if cus is None:
         await state.set_state(Form.fullname)
         await message.answer(

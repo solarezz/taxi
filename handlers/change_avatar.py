@@ -28,6 +28,10 @@ async def take_photo(message: Message, state: FSMContext):
     dr = await drivers.info(message.chat.id)
     cus = await customers.info(message.chat.id)
     if dr:
+        await message.bot.download(file=message.photo[-1].file_id, destination=f'avatars/{message.chat.id}.png')
+        await drivers.update_photo(telegram_user_id=message.chat.id,
+                                   photo_directory=f'avatars/{message.chat.id}.png')
+        await message.answer('Ваше фото обновлено!')
         await state.clear()
     elif cus:
         await message.bot.download(file=message.photo[-1].file_id, destination=f'avatars/{message.chat.id}.png')
