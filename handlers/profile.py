@@ -31,7 +31,7 @@ async def profile(message: Message):
         - Оценка: {dr[6]}
 
         —
-                """, reply_markup=change_avatar())
+        """, reply_markup=change_avatar())
     elif cus:
         await message.answer_photo(photo=FSInputFile(cus[4]), caption=f"""
 —
@@ -42,4 +42,4 @@ async def profile(message: Message):
 - Оценка: {cus[3]}
 
 —
-        """, reply_markup=change_avatar())
+""", reply_markup=change_avatar())
