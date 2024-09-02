@@ -30,6 +30,17 @@ def menu_keyboard(user_id):
         return markup
 
 
+def yes_or_no():
+    choice = [
+        [
+            KeyboardButton(text='🟢 Подходит'),
+            KeyboardButton(text='🔴 Не подходит')
+        ]
+    ]
+    markup = ReplyKeyboardMarkup(keyboard=choice, resize_keyboard=True)
+    return markup
+
+
 def change_avatar():
     change = [
         [

@@ -66,6 +66,7 @@ async def where_process(message: Message, state: FSMContext):
             await message.answer_photo(photo=FSInputFile(info_dr[7]), caption=f"""
     За вами приедет:
     Имя: {info_dr[1]}
+    Номер телефона: {info_dr[9]}
     Машина: {info_dr[4]}
     Номер машины: {info_dr[5]}
     Стаж: {info_dr[3]}"""
